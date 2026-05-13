@@ -1,0 +1,32 @@
+name: FilmModu Scraper
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: repoyu çek
+        uses: actions/checkout@v4
+
+      - name: py 3.13 kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: kütüphaneleri yükle
+        run: pip install -r requirements.txt
+
+      - name: scripti çalıştır
+        run: python filmmodu.py
+
+      - name: m3u dosyasını artifact olarak yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: filmmodu-m3u
+          path: filmmodu_tum.m3u
+          retention-days: 7
