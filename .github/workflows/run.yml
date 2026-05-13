@@ -8,6 +8,8 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: repoyu çek
@@ -24,9 +26,9 @@ jobs:
       - name: scripti çalıştır
         run: python filmmodu.py
 
-      - name: m3u dosyasını artifact olarak yükle
-        uses: actions/upload-artifact@v4
-        with:
-          name: filmmodu-m3u
-          path: filmmodu_tum.m3u
-          retention-days: 7
+      - name: değişiklikleri repoya kaydet
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add filmmodu_tum.m3u
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Güncel m3u listesi: $(date +'%Y-%m-%d %H:%M')" && git push)
