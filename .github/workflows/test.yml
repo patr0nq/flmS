@@ -1,4 +1,4 @@
-Name: Jetfilm Scraper
+name: Jetfilm Scraper
 
 on:
   workflow_dispatch:
