@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: scripti çalıştır
-        run: python jetfilm.py
+        run: python filmekseni.py
 
       - name: değişiklikleri repoya kaydet
         run: |
