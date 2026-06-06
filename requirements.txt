@@ -1,5 +1,0 @@
-cloudscraper
-beautifulsoup4
-lxml
-httpx
-httpx[http2]
